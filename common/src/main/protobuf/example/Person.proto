@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package example;
+
+// Next TAG: 2
+message Person {
+  string id = 1;
+}

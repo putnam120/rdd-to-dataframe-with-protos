@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package example;
+
+import "example/Person.proto";
+import "example/Business.proto";
+
+// Next TAG: 3
+message RecordElement {
+  oneof element {
+    Person person= 1;
+    Business buisness = 2;
+  }
+}
