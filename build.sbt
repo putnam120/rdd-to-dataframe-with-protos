@@ -21,13 +21,13 @@ lazy val pipeline = project
     publishArtifact in Test := false,
     assemblySettings,
     libraryDependencies ++= commonDependencies ++ Seq(
-      dependencies.sparkCore,
-      dependencies.sparkSql,
       dependencies.sparkProto,
-      dependencies.hadoopCommon,
-      dependencies.hadoopClient,
-      dependencies.hadoopAws,
-      dependencies.awsSdk
+      dependencies.sparkCore % "provided",
+      dependencies.sparkSql % "provided",
+      dependencies.hadoopCommon % "provided",
+      dependencies.hadoopClient % "provided",
+      dependencies.hadoopAws % "provided",
+      dependencies.awsSdk % "provided"
     )
   )
 
@@ -42,7 +42,8 @@ lazy val assemblySettings = Seq(
     ShadeRule
       .rename("com.google.common.**" -> "repackaged.com.google.common.@1")
       .inAll,
-    ShadeRule.rename("com.google.protobuf.**" -> "shadeproto.@1").inAll
+    ShadeRule.rename("com.google.protobuf.**" -> "shadeproto.@1").inAll,
+    ShadeRule.rename("scala.collection.compat.**" -> "shadecompat.@1").inAll
   )
 )
 
